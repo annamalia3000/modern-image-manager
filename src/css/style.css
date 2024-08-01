@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-osx-font-smoothing: grayscale;
+    font-size: 16px;
+    color: #2c3e50;
+    background: #f6f6f6;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    height: 400px;
+    padding: 40px;
+    position: relative;
+    background: url('../img/paper.jpg');
+    border-top: 22px solid rgba(117, 115, 99, 0.48);
+    border-radius: 20px;
+}
+
+.dnd {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 170px;
+    text-align: center;
+    background-color: white;
+    border: 2px solid rgba(117, 115, 99, 0.48);
+    border-radius: 20px;
+}
+
+.dnd-title {
+    color: black;
+    font-family: sans-serif;
+    font-size: 24px;
+    font-weight: 300;
+}
+
+.images {
+    display: flex;
+    width: 100%;
+    margin-top: 40px;
+    gap: 30px;
+}
+
+.img-container {
+    position: relative;
+}
+
+.image {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    background-color: white;
+    border: 2px solid rgba(117, 115, 99, 0.48);
+}
+
+.image::before,
+.image::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 160px;
+    top: -21px;
+    left: 50%;
+    background-color: rgba(117, 115, 99, 0.48);
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.image::after {
+    transform: translateX(-50%) rotate(-45deg);
+}
+
+.remove-img-btn {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 37px;
+    height: 37px;
+    border: 2px solid rgba(117, 115, 99, 0.48);
+    border-radius: 50%;
+    background-color: rgb(250, 250, 250); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.remove-img-btn::before,
+.remove-img-btn::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 20px;
+    top: 5px;
+    left: 50%;
+    background-color: rgba(117, 115, 99, 0.48);
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.remove-img-btn::after {
+    transform: translateX(-50%) rotate(-45deg);
+}
