@@ -32,12 +32,30 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
     width: 100%;
     height: 170px;
     text-align: center;
     background-color: white;
     border: 2px solid rgba(117, 115, 99, 0.48);
     border-radius: 20px;
+    cursor: pointer;
+}
+
+.dnd-input {
+    top: 0; left: 0; right: 0; bottom: 0; margin: 0;
+    width: 100%;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.input-img {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0; margin: 0;
+    opacity: 0;
+    width: 100%;
+    cursor: pointer;
 }
 
 .dnd-title {
@@ -94,22 +112,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
+    font-size: 20px;
+    color: rgba(117, 115, 99, 0.48);
     cursor: pointer;
-}
-
-.remove-img-btn::before,
-.remove-img-btn::after {
-    content: '';
-    position: absolute;
-    width: 2px;
-    height: 20px;
-    top: 5px;
-    left: 50%;
-    background-color: rgba(117, 115, 99, 0.48);
-    transform: translateX(-50%) rotate(45deg);
-}
-
-.remove-img-btn::after {
-    transform: translateX(-50%) rotate(-45deg);
 }
