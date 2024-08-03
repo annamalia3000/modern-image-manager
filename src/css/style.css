@@ -28,7 +28,7 @@ body {
     border-radius: 20px;
 }
 
-.dnd {
+.dnd-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -76,7 +76,8 @@ body {
     position: relative;
 }
 
-.image {
+.pre-img {
+    display: inline-block;
     width: 120px;
     height: 120px;
     position: relative;
@@ -84,8 +85,8 @@ body {
     border: 2px solid rgba(117, 115, 99, 0.48);
 }
 
-.image::before,
-.image::after {
+.pre-img::before,
+.pre-img::after {
     content: '';
     position: absolute;
     width: 2px;
@@ -96,8 +97,16 @@ body {
     transform: translateX(-50%) rotate(45deg);
 }
 
-.image::after {
+.pre-img::after {
     transform: translateX(-50%) rotate(-45deg);
+}
+
+.image {
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    position: relative;
+    border: 2px solid rgba(117, 115, 99, 0.48);
 }
 
 .remove-img-btn {
