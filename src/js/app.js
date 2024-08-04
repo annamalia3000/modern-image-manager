@@ -48,7 +48,7 @@ const checkImageCount = () => {
         preImgContainer = null;
     } else if (imagesCount < 10 && !preImgContainer) { 
         preImgContainer = document.createElement('div');
-        preImgContainer.classList.add('pre-img-container');
+        preImgContainer.classList.add('preimg-container');
 
         const preImg = document.createElement('div');
         preImg.classList.add('pre-img');
