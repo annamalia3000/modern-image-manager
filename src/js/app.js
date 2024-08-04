@@ -1,64 +1,90 @@
 const dndContainer = document.querySelector('.dnd-container');
 const imgInput = document.querySelector('.input-img');
-const removeButtons = document.querySelectorAll('.remove-img-btn');
 const images = document.querySelector('.images');
+let preImgContainer = document.querySelector('.preimg-container');
 
-dndContainer.addEventListener('click', (e) => {
+dndContainer.addEventListener('click', () => {
     imgInput.dispatchEvent(new MouseEvent('click'));
 });
 
-const displayImg = (file, preImg) => {
-    const reader = new FileReader(); 
-
-    reader.onload = (e) => {
-        const imgElement = document.createElement('img');
-        imgElement.src = e.target.result;
-        imgElement.classList.add('image');
-        
-        preImg.innerHTML = '';
-        preImg.classList.remove('pre-img');
-        preImg.appendChild(imgElement);
-    };
-
+const createNewImgContainer = (imgSrc) => {
     const newImgContainer = document.createElement('div');
     newImgContainer.classList.add('img-container');
 
-    const newPreImg = document.createElement('div');
-    newPreImg.classList.add('pre-img');
+    const imgElement = document.createElement('img');
+    imgElement.src = imgSrc;
+    imgElement.classList.add('image');
 
     const newButton = document.createElement('button');
-    newButton.classList.add('remove-img-btn');
-    newButton.textContent ='X';
+    newButton.classList.add('remove-img-btn', 'img-btn');
+    newButton.textContent = 'X';
 
-    newImgContainer.appendChild(newPreImg);
+    newImgContainer.appendChild(imgElement);
     newImgContainer.appendChild(newButton);
-    images.appendChild(newImgContainer);
+
+    preImgContainer.insertAdjacentElement('beforebegin', newImgContainer);
+};
+
+const displayImg = (file) => {
+    const reader = new FileReader(); 
+
+    reader.onload = (e) => {
+        createNewImgContainer(e.target.result);
+        checkImageCount();
+    };
 
     reader.readAsDataURL(file);
 };
 
+const canAddMoreImages = () => {
+    const imagesCount = document.querySelectorAll('.image').length;
+    return imagesCount < 10;
+};
+
+const checkImageCount = () => { 
+    const imagesCount = document.querySelectorAll('.image').length;
+    if (imagesCount >= 10 && preImgContainer) {
+        preImgContainer.remove();
+        preImgContainer = null;
+    } else if (imagesCount < 10 && !preImgContainer) { 
+        preImgContainer = document.createElement('div');
+        preImgContainer.classList.add('pre-img-container');
+
+        const preImg = document.createElement('div');
+        preImg.classList.add('pre-img');
+        
+        const preButton = document.createElement('button');
+        preButton.classList.add('img-btn');
+        preButton.textContent = 'X';
+
+        preImgContainer.appendChild(preImg);
+        preImgContainer.appendChild(preButton);
+        images.appendChild(preImgContainer);
+    }
+};
+
 imgInput.addEventListener('change', (e) => {
     const files = e.target.files;
-    let preImgs = document.querySelectorAll('.pre-img');
-
-    Array.from(files).forEach((file, index) => {
-        if (index < preImgs.length) {
-            displayImg(file, preImgs[index]);
-        }
-    });
+    if (canAddMoreImages()) {
+        Array.from(files).forEach((file) => {
+            if (canAddMoreImages()) {
+                displayImg(file);
+            }
+        });
+    }
 });
 
 dndContainer.addEventListener('drop', (e) => {
     e.preventDefault();
 
     const files = e.dataTransfer.files;
-    let preImgs = document.querySelectorAll('.pre-img');
-
-    Array.from(files).forEach((file, index) => {
-        if (index < preImgs.length) {
-            displayImg(file, preImgs[index]);
-        }
-    });
+    if (canAddMoreImages()) {
+        Array.from(files).forEach((file) => {
+            if (canAddMoreImages()) {
+                displayImg(file);
+            }
+        });
+    }
 });
 
 dndContainer.addEventListener('dragover', (e) => {
@@ -69,5 +95,6 @@ images.addEventListener('click', (e) => {
     if (e.target.classList.contains('remove-img-btn')) {
         const imgContainer = e.target.closest('.img-container');
         imgContainer.remove();
+        checkImageCount();
     }
 });
