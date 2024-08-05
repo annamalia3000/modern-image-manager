@@ -39,6 +39,17 @@ body {
     border: 2px solid rgba(117, 115, 99, 0.48);
     border-radius: 20px;
     cursor: pointer;
+    color: black;
+    transition: color 0.4s;
+
+    animation-name: blink;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+.dnd-container:hover {
+    animation-play-state: paused;
+    color: rgb(30, 27, 178);
 }
 
 .dnd-input {
@@ -58,11 +69,11 @@ body {
 }
 
 .dnd-title {
-    color: black;
     font-family: sans-serif;
     font-size: 24px;
     font-weight: 300;
 }
+
 
 .images {
     display: flex;
@@ -78,6 +89,17 @@ body {
 
 .preimg-container {
     position: relative;
+}
+
+@keyframes blink {
+    0% {
+        border-color: rgba(117, 115, 99, 0.48);
+
+    }
+    100% {
+        border-color:rgb(30, 27, 178);
+
+    }
 }
 
 .pre-img {
@@ -128,4 +150,9 @@ body {
     font-size: 20px;
     color: rgba(117, 115, 99, 0.48);
     cursor: pointer;
+    transition: color 0.3s;
+}
+
+.img-btn:hover {
+    color: rgb(140, 14, 14);
 }
