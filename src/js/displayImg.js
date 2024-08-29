@@ -1,14 +1,16 @@
 import { createNewImgContainer } from './createNewContainer';
 import { checkImageCount } from './checkImageCount';
 
+const baseURL = 'http://localhost:3000';
+
 export async function displayImg(file) {
     try {
-        console.log('Uploading file:', file); // Логируем файл для проверки
+        console.log('Uploading file:', file); 
 
         const formData = new FormData();
         formData.append('file', file);
 
-        const response = await fetch('http://localhost:3000/files', {
+        const response = await fetch(`${baseURL}/files`, {
             method: 'POST',
             body: formData,
         });
@@ -18,7 +20,7 @@ export async function displayImg(file) {
         }
 
         const { file: uploadedFile } = await response.json();
-        console.log('Uploaded file:', uploadedFile); // Логируем загруженный файл
+        console.log('Uploaded file:', uploadedFile); 
 
         createNewImgContainer(uploadedFile.id, uploadedFile.path, uploadedFile.name);
         checkImageCount();

@@ -1,5 +1,6 @@
 import { checkImageCount } from './checkImageCount';
 const images = document.querySelector('.images');
+const baseURL = 'http://localhost:3000';
 
 images.addEventListener('click', async (e) => {
     if (e.target.classList.contains('remove-img-btn')) {
@@ -7,7 +8,7 @@ images.addEventListener('click', async (e) => {
         const fileId = imgContainer.dataset.id;
 
         try {
-            const response = await fetch(`http://localhost:3000/files/${fileId}`, {
+            const response = await fetch(`${baseURL}/files/${fileId}`, {
                 method: 'DELETE',
             });
 

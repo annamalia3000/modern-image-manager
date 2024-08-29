@@ -1,5 +1,7 @@
 export async function checkImageCount() { 
     const imagesCount = document.querySelectorAll('.image').length;
+    let preImgContainer = document.querySelector('.preimg-container');
+
     if (imagesCount >= 10 && preImgContainer) {
         preImgContainer.remove();
         preImgContainer = null;

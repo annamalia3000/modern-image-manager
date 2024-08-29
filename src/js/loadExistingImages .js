@@ -1,6 +1,8 @@
+const baseURL = 'http://localhost:3000';
+
 export async function loadExistingImages() {
     try {
-        const response = await fetch('http://localhost:3000/files');
+        const response = await fetch(`${baseURL}/files`);
         const { files } = await response.json();
 
         files.forEach(file => {
