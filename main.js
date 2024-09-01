@@ -61,7 +61,7 @@ removeImg_images.addEventListener('click', async e => {
   }
 });
 ;// CONCATENATED MODULE: ./src/js/createNewContainer.js
-function createNewContainer_createNewImgContainer(id, name, path) {
+function createNewContainer_createNewImgContainer(id, path, name) {
   let preImgContainer = document.querySelector('.preimg-container');
   const newImgContainer = document.createElement('div');
   newImgContainer.classList.add('img-container');
