@@ -1,4 +1,4 @@
-export function createNewImgContainer(id, name, path) {
+export function createNewImgContainer(id, path, name) {
     let preImgContainer = document.querySelector('.preimg-container');
 
     const newImgContainer = document.createElement('div');
